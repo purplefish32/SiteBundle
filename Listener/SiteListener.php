@@ -28,17 +28,12 @@ class SiteListener extends FileListener
     public function onOpen(OpenResourceEvent $event)
     {
         $ds = DIRECTORY_SEPARATOR;
-        $instance = $this->container
-            ->get('doctrine.orm.entity_manager')
-            ->getRepository('ClarolineCoreBundle:Resource\ResourceInstance')
-            ->find($event->getInstanceId());
-        $resource = $instance->getResource();
+        $resource = $event->getResource();
         $hashName = $resource->getHashName();
         $this->unzipTmpFile($hashName);
         $relativePath = pathinfo($resource->getHashName(), PATHINFO_FILENAME)
             . $ds
             . pathinfo($resource->getName(), PATHINFO_FILENAME)
-            . pathinfo($instance->getName(), PATHINFO_FILENAME)
             . $ds
             . "index.html";
         $route = $this->container->get('router')->getContext()->getBaseUrl();
