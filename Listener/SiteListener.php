@@ -3,8 +3,8 @@
 namespace Claroline\SiteBundle\Listener;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Claroline\CoreBundle\Library\Resource\Event\OpenResourceEvent;
-use Claroline\CoreBundle\Library\Resource\Event\CreateFormResourceEvent;
+use Claroline\CoreBundle\Library\Event\OpenResourceEvent;
+use Claroline\CoreBundle\Library\Event\CreateFormResourceEvent;
 use Claroline\CoreBundle\Listener\Resource\FileListener;
 use Claroline\CoreBundle\Form\FileType;
 use Claroline\CoreBundle\Entity\Resource\File;
