@@ -63,7 +63,7 @@ class SiteListener extends FileListener
             );
             $zip->close();
         } else {
-            return 0; // TODO: ????
+            return 0;
         }
     }
 }
