@@ -51,7 +51,7 @@ class SiteListener extends FileListener
      */
     private function unzipTmpFile($hashName)
     {
-        $path = $this->container->getParameter('claroline.files.directory') . DIRECTORY_SEPARATOR . $hashName;
+        $path = $this->container->getParameter('claroline.param.files_directory') . DIRECTORY_SEPARATOR . $hashName;
         $zip = new \ZipArchive();
 
         if ($zip->open($path) === true) {
