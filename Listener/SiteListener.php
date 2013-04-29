@@ -2,6 +2,8 @@
 
 namespace Claroline\SiteBundle\Listener;
 
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Claroline\CoreBundle\Library\Event\OpenResourceEvent;
 use Claroline\CoreBundle\Library\Event\CreateFormResourceEvent;
@@ -9,8 +11,20 @@ use Claroline\CoreBundle\Listener\Resource\FileListener;
 use Claroline\CoreBundle\Form\FileType;
 use Claroline\CoreBundle\Entity\Resource\File;
 
-class SiteListener extends FileListener
+class SiteListener extends FileListener implements ContainerAwareInterface
 {
+    /**
+     * @DI\InjectParams({
+     *     "container" = @DI\Inject("service_container")
+     * })
+     *
+     * @param ContainerInterface $container
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     public function onCreateForm(CreateFormResourceEvent $event)
     {
         $form = $this->container->get('form.factory')->create(new FileType, new File());
